@@ -1,63 +1,47 @@
-import { Navbar, Container, NavLink } from "react-router-dom";
-import CartWidget from "../CartWidget.1";
-import logo from "../image/logo.jpg";
+import { Container, Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
+import CartWidget from "../CartWidget";
 
-import "./NavBar.css";
+import "../navBar/NavBar.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
   return (
-    <>
-      <Navbar collapseOnSelect expand="lg" variant="dark">
-        <Container>
-          <NavLink className={({ isActive }) => "navbarTitulo"} to="/">
-            Hail Electronica
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand>
+          <Link to="/">Hail Electronica</Link>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="navBar__item justify-content-end flex-grow-1 pe-3">
+            <Link to="/" style={{ textDecoration: "none" }}>
+              Home
+            </Link>
+            <Link to="/category/Notebooks" style={{ textDecoration: "none" }}>
+              Notebooks
+            </Link>
+            <NavDropdown title="Electronica" id="collasible-nav-dropdown">
+              <NavDropdown.Item>
+                <Link
+                  to="/category/Celulares"
+                  style={{ textDecoration: "none" }}
+                >
+                  Celulares
+                </Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/category/Tablets" style={{ textDecoration: "none" }}>
+                  Tablets
+                </Link>{" "}
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+          <NavLink className={({ isActive }) => "carrito"} to="cart">
+            <CartWidget />
           </NavLink>
-          <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll">
-            <Nav
-              className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: "100px" }}
-              navbarScroll
-            >
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "active px-4 navbarCat" : " px-4 navbarCat"
-                }
-                to="/"
-              >
-                Home
-              </NavLink>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "active px-4 navbarCat" : " px-4 navbarCat"
-                }
-                to="categorias/celulares"
-              >
-                Celulares
-              </NavLink>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "active px-4 navbarCat" : " px-4 navbarCat"
-                }
-                to="categorias/tablets"
-              >
-                Tablets
-              </NavLink>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "active px-4 navbarCat" : " px-4 navbarCat"
-                }
-                to="categorias/notebook"
-              >
-                Notebook
-              </NavLink>
-            </Nav>
-            <NavLink className={({ isActive }) => "carrito"} to="cart">
-              <Widget />
-            </NavLink>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }

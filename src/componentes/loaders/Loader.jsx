@@ -1,4 +1,4 @@
-import logoGrande from "../image/logo_grande.jpg";
+import logoGrande from "../image/loadingCarrito.gif";
 import "./Loader.css";
 
 export default function Loader() {

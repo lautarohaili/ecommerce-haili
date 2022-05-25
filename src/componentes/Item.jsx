@@ -11,7 +11,7 @@ export default function Item({ el }) {
         <h3 className="item__title">{el.name}</h3>
         <p className="item__price">{`Precio: $${el.price}`}</p>
         <Link to={`/itemDetail/${el.id}`}>
-          <button className="item__addBtn">Agregar al pedido</button>
+          <button className="item__addBtn">Detalles del Producto</button>
         </Link>
       </div>
     </div>

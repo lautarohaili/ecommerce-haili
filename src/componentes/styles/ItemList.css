@@ -5,7 +5,7 @@
   flex-flow: row wrap;
   align-content: center;
   justify-content: center;
-  background-color: #008f39;
+  background-color: whitesmoke;
   min-height: calc(100vh - 85px);
 }
 

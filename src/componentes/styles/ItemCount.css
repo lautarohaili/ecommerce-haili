@@ -27,9 +27,14 @@
   font-size: 2rem;
   color: white;
   margin-left: 1rem;
+  transition: all 250ms ease-out;
 }
 .count-container__button {
-  color: var(--primary-color);
+  background: rgba(0, 0, 0, 0.8);
+  padding: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 1rem;
   width: 100%;
   height: 100%;
   border: 1px solid var(--border-color);
