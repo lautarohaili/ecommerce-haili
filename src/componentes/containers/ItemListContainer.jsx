@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import HomeCarousel from "../carousel/HomeCarousel";
 import ItemList from "../ItemList";
 import Loader from "../loaders/Loader";
 
@@ -22,6 +23,7 @@ export default function ItemListContainer() {
 
   return (
     <div className="itemListContainer">
+      <HomeCarousel />
       {loader ? <Loader /> : <ItemList items={items} id={id} />}
     </div>
   );

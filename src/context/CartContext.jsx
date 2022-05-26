@@ -1,9 +1,9 @@
 import { createContext, useContext, useState } from "react";
 
-const cartContext = createContext([]);
+const CartContext = createContext([]);
 
 export function UseCartContext() {
-  return useContext(cartContext);
+  return useContext(CartContext);
 }
 
 export default function CartContextProv({ children }) {
@@ -33,7 +33,7 @@ export default function CartContextProv({ children }) {
   }
 
   return (
-    <cartContext.Provider
+    <CartContext.Provider
       value={{
         cartList,
         addToCart,
@@ -42,6 +42,6 @@ export default function CartContextProv({ children }) {
       }}
     >
       {children}
-    </cartContext.Provider>
+    </CartContext.Provider>
   );
 }

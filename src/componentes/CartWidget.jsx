@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../componentes/styles/CartWidget.css";
 
-import logoCarrito from "./image/carrito.png";
+import logoCarrito from "./image/carrito1.png";
 
 export default function CartWidget() {
   return (
