@@ -1,12 +1,13 @@
-import { useState } from "react";
-import { UseCartContext } from "../context/CartContext";
+import { useContext, useState } from "react";
 import ItemCount from "./ItemCount";
 import BuyButtons from "./BuyButtons";
+import { CartContext } from "../context/CartContext";
 import "./styles/ItemDetail.css";
 
 export default function ItemDetail({ item }) {
   const [inputType, setInputType] = useState("itemCount");
-  const { addToCart } = UseCartContext();
+  const cartContext = useContext(CartContext);
+  const { addToCart } = cartContext;
 
   function onAdd(quantity) {
     addToCart({ ...item, quantity });
@@ -18,13 +19,21 @@ export default function ItemDetail({ item }) {
   //console.log(cartList);
 
   return (
-    <div className="itemDetail">
-      <img className="itemDetail__img" src={item.img} alt="" />
-      <div className="itemDetail__info">
-        <h3 className="itemDetail__title">{item.name}</h3>
-        <p className="itemDetail__detail">${item.price}</p>
-        <p className="itemDetail__detail">{item.detail}</p>
-
+    <div className="product-detail">
+      <img className="product-detail__img" src={item.img} alt="" />
+      <div className="product-detail__info">
+        <h2 className="itemDetail__title">{item.name}</h2>
+        <p className="description">{item.description}</p>
+        <ul className="info-grid">
+          <li>Price:</li>
+          <li>${item.price}</li>
+          <li>Size:</li>
+          <li>{item.size}</li>
+          <li>Vendor:</li>
+          <li>{item.vendor}</li>
+          <li>Type:</li>
+          <li>{item.type}</li>
+        </ul>
         {inputType === "itemCount" ? (
           <ItemCount
             item={item}

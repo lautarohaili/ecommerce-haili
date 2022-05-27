@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
-import CartItem from "../CartItem";
+import CartItem from "./CartItem";
+
+import "../carrito/CartListItem.css";
 
 const CartListItem = () => {
   const cartContext = useContext(CartContext);
@@ -22,11 +24,14 @@ const CartListItem = () => {
         <p>cargando productos</p>
       )}
       {cart.length ? (
-        <button className="button-primary button-padding" onClick={deleteCart}>
+        <button className="button-primary button-clear" onClick={deleteCart}>
           Vaciar Carrito
         </button>
       ) : (
-        <p>No hay productos en el carrito</p>
+        <div>
+          <h3>Tu carrito está vacío</h3>
+          <p>¿Todavia no sabés qué comprar?</p>
+        </div>
       )}
     </section>
   );

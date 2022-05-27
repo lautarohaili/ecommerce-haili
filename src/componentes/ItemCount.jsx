@@ -26,14 +26,24 @@ export default function ItemCount({
   }
 
   return (
-    <div className="itemCount">
-      <button id="less" className="itemCount__minusBtn" onClick={decrease}>
-        -
-      </button>
-      <span className="itemCount__quantity">{quantity}</span>
-      <button id="plus" className="itemCount__plusBtn" onClick={increase}>
-        +
-      </button>
+    <div className="count-container">
+      <div className="count-container__contador">
+        <button
+          id="less"
+          className="count-container__button"
+          onClick={decrease}
+        >
+          -
+        </button>
+        <span className="count-container__qty">{quantity}</span>
+        <button
+          id="plus"
+          className="count-container__button"
+          onClick={increase}
+        >
+          +
+        </button>
+      </div>
 
       <button className="count-container__button" onClick={addToCart}>
         Agregar al Carrito
