@@ -19,10 +19,10 @@ const CartItem = ({ item, deleteCartById }) => {
       <h2 className="cart-item__name">{item.name}</h2>
       <span className="cart-item__price">${item.price}</span>
       <span className="cart-item__qty">
-        <strong>Cantidad:</strong> {item.qty}
+        <strong>Cantidad:</strong> {item.quantity}
       </span>
       <span className="cart-item__qty">
-        <strong>Total:</strong> ${item.qty * item.price}
+        <strong>Total:</strong> ${item.quantity * item.price}
       </span>
     </article>
   );

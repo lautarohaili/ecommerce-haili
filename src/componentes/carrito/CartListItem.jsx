@@ -24,9 +24,14 @@ const CartListItem = () => {
         <p>cargando productos</p>
       )}
       {cart.length ? (
-        <button className="button-primary button-clear" onClick={deleteCart}>
-          Vaciar Carrito
-        </button>
+        <div>
+          <button className="button-primary button-clear" onClick={deleteCart}>
+            Vaciar Carrito
+          </button>
+          <button className="button-primary button-clear">
+            Finalizar Compra
+          </button>
+        </div>
       ) : (
         <div>
           <h3>Tu carrito está vacío</h3>
