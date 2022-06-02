@@ -25,14 +25,14 @@ export default function ItemDetail({ item }) {
         <h2 className="itemDetail__title">{item.name}</h2>
         <p className="description">{item.description}</p>
         <ul className="info-grid">
-          <li>Price:</li>
+          <li>Precio:</li>
           <li>${item.price}</li>
-          <li>Size:</li>
-          <li>{item.size}</li>
-          <li>Vendor:</li>
-          <li>{item.vendor}</li>
-          <li>Type:</li>
-          <li>{item.type}</li>
+          <li>Stock:</li>
+          <li>{item.stock}</li>
+          <li>Vendedor:</li>
+          <li></li>
+          <li>Detalles:</li>
+          <li>{item.detail}</li>
         </ul>
         {inputType === "itemCount" ? (
           <ItemCount
