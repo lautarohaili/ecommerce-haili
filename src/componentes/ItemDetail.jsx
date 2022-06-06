@@ -1,13 +1,12 @@
-import { useContext, useState } from "react";
-import ItemCount from "./ItemCount";
+import { useState } from "react";
+import { UseCartContext } from "../context/CartContext";
 import BuyButtons from "./BuyButtons";
-import { CartContext } from "../context/CartContext";
+import ItemCount from "./ItemCount";
 import "./styles/ItemDetail.css";
 
 export default function ItemDetail({ item }) {
   const [inputType, setInputType] = useState("itemCount");
-  const cartContext = useContext(CartContext);
-  const { addToCart } = cartContext;
+  const { addToCart } = UseCartContext();
 
   function onAdd(quantity) {
     addToCart({ ...item, quantity });

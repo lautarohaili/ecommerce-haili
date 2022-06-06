@@ -1,16 +1,34 @@
 import React from "react";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { UseCartContext } from "../../context/CartContext";
 
 import "../carrito/CartItem.css";
 
-const CartItem = ({ item, deleteCartById }) => {
+export default function CartItem({ item }) {
+  const { clearItem } = UseCartContext();
+
+  function removeItem() {
+    clearItem(item.id);
+  }
   return (
-    <article className="cart-item-card">
-      <div
-        className="cart-item__delete"
-        onClick={() => deleteCartById(item.id)}
-      >
+    <div>
+      <div className="cart-item__delete" onClick={() => removeItem(item.id)}>
+        <FontAwesomeIcon icon={faTimes} color={"#1d1d1d"} size={"1x"} />
+      </div>
+      <div>
+        <li>
+          <img src={item.img} style={{ width: 60 }} />
+          {item.name} - Precio: {item.price} - cantidad: {item.quantity}
+        </li>
+      </div>
+    </div>
+  );
+}
+
+/*
+<article className="cart-item-card">
+      <div className="cart-item__delete" onClick={() => clearItem(item.id)}>
         <FontAwesomeIcon icon={faTimes} color={"#1d1d1d"} size={"1x"} />
       </div>
       <div className="cart-item__img">
@@ -25,7 +43,4 @@ const CartItem = ({ item, deleteCartById }) => {
         <strong>Total:</strong> ${item.quantity * item.price}
       </span>
     </article>
-  );
-};
-
-export default CartItem;
+    */
