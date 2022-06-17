@@ -6,9 +6,20 @@
   margin: 0 auto;
 }
 
+.itemDetail__title {
+  font-size: 34px;
+}
+
+.itemDetail__description {
+  font-size: 13px;
+}
+
 .product-detail__img {
+  height: 350px;
   width: 100%;
-  max-width: 585px;
+  max-width: 300px;
+  margin-top: 40px;
+
   border-radius: 20px;
 }
 
@@ -29,6 +40,7 @@
   display: grid;
   grid-template: 1fr/1fr 1fr;
   gap: 20px 0;
+  font-size: 17px;
 }
 
 .info-grid li {

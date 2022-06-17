@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { UseCartContext } from "../context/CartContext";
+import { useCartContext } from "../context/CartContext";
 import CartListItem from "../componentes/carrito/CartListItem";
 
 import "../pages/styles/cartPage.css";
 
 export default function CartPage() {
-  const { totalItems, orderId, createOrder } = UseCartContext();
+  const { totalItems, orderId, createOrder } = useCartContext();
   const [orderSent, setOrderSent] = useState(false);
 
   function sendOrder() {
@@ -23,7 +23,9 @@ export default function CartPage() {
           </div>
         </main>
         {orderSent ? (
-          <h1>Pedido enviado! Nro de pedido: {orderId}</h1>
+          <div className="cart-info">
+            <h1>Pedido enviado! Nro de pedido: {orderId}</h1>
+          </div>
         ) : (
           <div className="cart-vacio">
             <h3>Tu carrito está vacío</h3>

@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { UseCartContext } from "../context/CartContext";
+import { useCartContext } from "../context/CartContext";
 import BuyButtons from "./BuyButtons";
 import ItemCount from "./ItemCount";
 import "./styles/ItemDetail.css";
 
 export default function ItemDetail({ item }) {
   const [inputType, setInputType] = useState("itemCount");
-  const { addToCart } = UseCartContext();
+  const { addToCart } = useCartContext();
 
   function onAdd(quantity) {
     addToCart({ ...item, quantity });
@@ -15,23 +15,17 @@ export default function ItemDetail({ item }) {
     setInputType("buyButtons");
   }
 
-  //console.log(cartList);
-
   return (
     <div className="product-detail">
       <img className="product-detail__img" src={item.img} alt="" />
       <div className="product-detail__info">
         <h2 className="itemDetail__title">{item.name}</h2>
-        <p className="description">{item.description}</p>
+        <p className="itemDetail__description">{item.description}</p>
         <ul className="info-grid">
           <li>Precio:</li>
           <li>${item.price}</li>
           <li>Stock:</li>
           <li>{item.stock}</li>
-          <li>Vendedor:</li>
-          <li></li>
-          <li>Detalles:</li>
-          <li>{item.detail}</li>
         </ul>
         {inputType === "itemCount" ? (
           <ItemCount

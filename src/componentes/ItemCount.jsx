@@ -45,7 +45,7 @@ export default function ItemCount({
         </button>
       </div>
 
-      <button className="count-container__button" onClick={addToCart}>
+      <button className="count-container__agregar" onClick={addToCart}>
         Agregar al Carrito
       </button>
     </div>

@@ -1,16 +1,16 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ItemDetailContainer from "./componentes/containers/ItemDetailContainer";
+import CartContextProvider from "./context/CartContext";
 import ItemListContainer from "./componentes/containers/ItemListContainer";
-import NuevoNavBar from "./componentes/navBar/NuevoNavBar";
 import CartPage from "./pages/cartPage";
-import CartProvider from "./context/CartContext";
+import NuevoNavBar from "./componentes/navBar/NuevoNavBar";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 function App() {
   return (
-    <CartProvider>
+    <CartContextProvider>
       <BrowserRouter>
         <div className="App">
           <NuevoNavBar />
@@ -23,7 +23,7 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
-    </CartProvider>
+    </CartContextProvider>
   );
 }
 

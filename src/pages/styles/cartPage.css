@@ -35,10 +35,19 @@
   );
 }
 
+.cart {
+  text-align: center;
+  font-size: 25px;
+}
+
 .tittle-page {
   background-color: rgba(117, 116, 116, 0.292);
   color: white;
   padding: 30px;
+  text-align: center;
+}
+
+.cart-info {
   text-align: center;
 }
 
@@ -49,4 +58,11 @@
 .button-menu {
   font-size: 20px;
   align-items: center;
+}
+
+.button-menu {
+  width: auto;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #f7b035;
 }

@@ -1,3 +1,3 @@
 export const onAdd = (qty) => {
-  alert(`Has agregado ${qty} cervezas `);
+  alert(`Has agregado ${qty}  `);
 };
