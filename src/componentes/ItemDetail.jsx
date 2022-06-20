@@ -8,8 +8,9 @@ export default function ItemDetail({ item }) {
   const [inputType, setInputType] = useState("itemCount");
   const { addToCart } = useCartContext();
 
-  function onAdd(quantity) {
-    addToCart({ ...item, quantity });
+  function onAdd(count) {
+    addToCart({ ...item, count: count });
+    handleInputType();
   }
   function handleInputType() {
     setInputType("buyButtons");
@@ -29,9 +30,8 @@ export default function ItemDetail({ item }) {
         </ul>
         {inputType === "itemCount" ? (
           <ItemCount
-            item={item}
             initial={1}
-            stock={5}
+            stock={item.stock}
             onAdd={onAdd}
             handleInputType={handleInputType}
           />

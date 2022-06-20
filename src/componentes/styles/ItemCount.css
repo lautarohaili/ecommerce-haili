@@ -27,7 +27,7 @@
 .count-container__button:hover {
   border: none;
   color: #ffffff;
-  background-color: #f7b035;
+  background-color: #3498db;
 }
 
 .count-container__button[disabled] {
@@ -41,7 +41,7 @@
   border-radius: 10px;
   font-size: 20px;
   padding-top: 10px;
-  color: #f7b035;
+  color: #3498db;
   background-color: #ffffff;
 }
 
@@ -49,6 +49,7 @@
   background: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 15px;
+  margin-top: 10px;
   width: 100%;
   height: 100%;
   border: 2px solid #555555;
@@ -60,5 +61,5 @@
 .count-container__agregar:hover {
   border: none;
   color: #ffffff;
-  background-color: #f7b035;
+  background-color: #3498db;
 }

@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import HomeCarousel from "../carousel/HomeCarousel";
 import ItemList from "../ItemList";
 import Loader from "../loaders/Loader";
+import Footer from "../footer/Footer";
+import Payments from "../payments/Payments";
 import {
   getFirestore,
   collection,
@@ -55,35 +57,12 @@ export default function ItemListContainer() {
   return (
     <div className="itemListContainer">
       <HomeCarousel />
+      <Payments />
+      <div className="titulo-items">
+        <h2>Nuestros Productos</h2>
+      </div>
       {loader ? <Loader /> : <ItemList items={items} id={id} />}
+      <Footer />
     </div>
   );
 }
-
-/*  
-  useEffect(() => {
-
-setTimeout(() => {
-  fetch("/data/data.json")
-    .then((response) => response.json())
-    .then((data) => setItems(data))
-    .catch((err) => console.log(err))
-    .finally(() => setLoader(false));
-}, 1000);
-  }, []);
-
-
-  const queryCollectionFilter = query(
-      queryCollection,
-      where("categoria", "==", "categoria")
-    );
-
-    getDocs(queryCollectionFilter)
-      .then((resp) =>
-        setItems(resp.docs.map((item) => ({ id: item.id, ...item.data() })))
-      )
-      .catch((err) => console.log(err))
-      .finally(() => setLoader(false));
-  }, []);
-
-*/

@@ -1,0 +1,22 @@
+.payments {
+  padding: 100px 10px 30px 10px;
+  width: 100%;
+  color: #3498db;
+  text-align: center;
+  margin-top: -50px;
+}
+
+.payments__title {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.payments__title h2 {
+  font-size: 3rem;
+  color: #3498db;
+}
+
+.card-title {
+  font-size: 2rem;
+  color: #3498db;
+}

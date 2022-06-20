@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CartContext = createContext([]);
 
@@ -6,52 +8,51 @@ export const useCartContext = () => useContext(CartContext);
 
 const CartContextProvider = ({ children }) => {
   const [cartList, setCartList] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [totalItems, setTotalItems] = useState(0);
 
-  function isInCart(id) {
-    return cartList.some((el) => el.id === id);
-  }
   function addToCart(item) {
-    if (isInCart(item.id)) {
-      let i = cartList.findIndex((el) => el.id === item.id);
-      const newCartList = cartList;
-      newCartList[i].quantity += item.quantity;
-      updateCart(newCartList);
+    const index = cartList.findIndex((product) => product.id === item.id);
+    if (index !== -1) {
+      toast("Agregaste " + item.name + " al carrito", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      let cantOld = cartList[index].count;
+      cartList[index].count = cantOld += item.count;
+      setCartList([...cartList]);
     } else {
-      updateCart([...cartList, item]);
+      toast("Agregaste " + item.name + " al carrito");
+      setCartList([...cartList, item]);
     }
   }
-  function clearCart() {
-    updateCart([]);
-  }
-  function clearItem(id) {
-    const newCartList = cartList.filter((el) => el.id !== id);
-    updateCart(newCartList);
-  }
-  function updateCart(arr) {
-    setCartList(arr);
-    setTotalPrice(
-      arr
-        .map((curr) => curr.quantity * curr.price)
-        .reduce((acc, curr) => acc + curr, 0)
-    );
-    setTotalItems(
-      arr.map((curr) => curr.quantity).reduce((acc, curr) => acc + curr, 0)
-    );
-  }
+  //eliminar producto//
+  const deleteItem = (id) => {
+    const newCart = [...cartList];
+    let index = newCart.findIndex((product) => product.id === id);
+    newCart.splice(index, 1);
+
+    setCartList([...newCart]);
+  };
+
+  //vaciar carrito//
+  const deleteCart = () => {
+    setCartList([]);
+  };
 
   return (
     <CartContext.Provider
       value={{
         cartList,
-        totalPrice,
-        totalItems,
+        deleteItem,
         addToCart,
-        clearCart,
-        clearItem,
+        deleteCart,
       }}
     >
+      <ToastContainer />
       {children}
     </CartContext.Provider>
   );

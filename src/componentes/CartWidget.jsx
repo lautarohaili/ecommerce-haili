@@ -1,18 +1,26 @@
-import { Link } from "react-router-dom";
+/* eslint-disable jsx-a11y/alt-text */
+import React from "react";
+
 import { useCartContext } from "../context/CartContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import Cart from "../componentes/image/carrito.gif";
+
 import "../componentes/styles/CartWidget.css";
 
 const CartWidget = () => {
-  const { totalItems } = useCartContext();
+  const { cartList } = useCartContext();
+
+  const totalItems = cartList.reduce(
+    (acc, item) => (acc = acc + item.count),
+    0
+  );
 
   return (
-    <Link to="/cart">
-      <div className="cart-widget">
-        <FontAwesomeIcon icon="fa-solid fa-cart-shopping" />
-        <div className="qty-display">{totalItems}</div>
-      </div>
-    </Link>
+    <div className="cart-widget">
+      <img src={Cart} className="carrito" />
+
+      <div className="qty-display">{totalItems}</div>
+    </div>
   );
 };
 

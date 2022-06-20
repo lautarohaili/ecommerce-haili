@@ -5,3 +5,69 @@
 .nav-item {
   font-size: 20px;
 }
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  column-gap: 0ex;
+}
+
+.navBar {
+  display: flex;
+  flex-direction: row;
+  font-size: 1rem;
+  align-items: center;
+  padding: 1em;
+  background-color: white;
+}
+.navBar ul {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+}
+
+.navBar ul li {
+  list-style: none;
+  text-transform: uppercase;
+  color: #3498db;
+  padding: 0.5em;
+}
+
+.navBar ul li:hover {
+  border-bottom: 1px #3498db solid;
+}
+
+.link {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 992px) {
+  .navBar {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 0.5rem;
+    align-items: center;
+    padding: 1em;
+    background-color: white;
+  }
+
+  .navBar ul {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 2em;
+  }
+
+  .navBar ul li {
+    list-style: none;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: #3498db;
+    padding: 0.5em;
+  }
+
+  .cartIcon {
+    text-align: center;
+  }
+}

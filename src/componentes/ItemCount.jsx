@@ -1,28 +1,15 @@
 import { useState } from "react";
 import "./styles/ItemCount.css";
 
-export default function ItemCount({
-  item,
-  initial,
-  stock,
-  onAdd,
-  handleInputType,
-}) {
-  const [quantity, setQuantity] = useState(initial);
+export default function ItemCount({ stock, initial, onAdd }) {
+  const [count, setCount] = useState(initial);
 
   function increase() {
-    if (quantity < stock) {
-      setQuantity(quantity + 1);
-    }
+    count < stock ? setCount(count + 1) : alert("No hay mas stock");
   }
+
   function decrease() {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  }
-  function addToCart() {
-    onAdd(quantity, item.name);
-    handleInputType();
+    count > initial ? setCount(count - 1) : alert("El carrito está vacío");
   }
 
   return (
@@ -35,7 +22,7 @@ export default function ItemCount({
         >
           -
         </button>
-        <span className="count-container__qty">{quantity}</span>
+        <span className="count-container__qty">{count}</span>
         <button
           id="plus"
           className="count-container__button"
@@ -45,7 +32,7 @@ export default function ItemCount({
         </button>
       </div>
 
-      <button className="count-container__agregar" onClick={addToCart}>
+      <button className="count-container__agregar" onClick={() => onAdd(count)}>
         Agregar al Carrito
       </button>
     </div>

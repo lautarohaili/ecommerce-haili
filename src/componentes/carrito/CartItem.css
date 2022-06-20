@@ -1,9 +1,13 @@
+.cart {
+  color: #3498db;
+  margin-top: 3rem;
+  border-radius: 1rem;
+  height: 50%;
+}
+
 .cart-item {
   text-align: center;
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid #555555;
-  font-size: 20px;
-  border-radius: 20px;
+  font-size: 1.5rem;
   margin: 10px 0;
   padding: 0 30px;
 }
@@ -11,8 +15,8 @@
 .cart-item__delete {
   border-radius: 10px;
   background-color: #f7b035;
-  width: 30px;
-  font-size: 20px;
+  width: 25px;
+  font-size: 1.5rem;
   margin: 10px;
   cursor: pointer;
 }
@@ -20,9 +24,9 @@
 .cart-item__img {
   background-color: #ffffff;
   width: 100%;
+  margin-right: 30px;
   height: 80px;
   padding-top: 10px;
-  margin: 20px;
   border-radius: 10px;
 }
 
@@ -51,4 +55,10 @@
   max-width: 120px;
   margin: 10px 0;
   font-size: 1.2rem;
+}
+
+@media (max-width: 600px) {
+  .cart-item__img {
+    display: none;
+  }
 }

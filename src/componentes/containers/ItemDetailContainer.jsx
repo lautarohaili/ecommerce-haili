@@ -6,6 +6,7 @@ import ItemDetail from "../ItemDetail";
 import Loader from "../loaders/Loader";
 
 import "./styles/ItemDetailContainer.css";
+import Footer from "../footer/Footer";
 
 export default function ItemDetailContainer() {
   const [item, setItem] = useState({});
@@ -26,8 +27,10 @@ export default function ItemDetailContainer() {
     <>
       <div className="itemDetailContainer">
         {loader ? <Loader /> : <ItemDetail item={item} />}
+      </div>{" "}
+      <div>
+        <Footer />
       </div>
-      <div></div>
     </>
   );
 }

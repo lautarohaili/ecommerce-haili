@@ -1,7 +1,7 @@
-.cartWidget {
-  position: relative;
-  cursor: pointer;
-  text-align: center;
+.carrito {
+  width: 4em;
+  height: 4em;
+  margin-left: 2em;
 }
 
 .qty-display {

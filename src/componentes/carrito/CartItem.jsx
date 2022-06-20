@@ -7,21 +7,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../carrito/CartItem.css";
 
 export default function CartItem({ item }) {
-  const { clearItem } = useCartContext();
+  const { deleteItem } = useCartContext();
 
   function removeItem() {
-    clearItem(item.id);
+    deleteItem(item.id);
   }
   return (
     <div>
-      <div>
+      <div className="cart">
         <li className="cart-item">
           <img
             className="cart-item__img"
             src={item.img}
             style={{ width: 100 }}
           />
-          {item.name} - Precio: {item.price} - cantidad: {item.quantity}
+          {item.name} - Precio: {item.price} - cantidad: {item.count}
           <button
             className="cart-item__delete"
             onClick={() => removeItem(item.id)}

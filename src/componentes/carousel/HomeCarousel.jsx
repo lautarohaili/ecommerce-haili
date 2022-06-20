@@ -4,6 +4,8 @@ import img1 from "../image/img1.jpg";
 import img2 from "../image/img2.jpg";
 import img3 from "../image/img3.jpg";
 
+import "../carousel/HomeCarousel.css";
+
 const HomeCarousel = () => {
   return (
     <>
