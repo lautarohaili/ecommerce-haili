@@ -19,7 +19,7 @@
 
 <hr> </hr>
 
-<h3>DEPLOY</h3>
+<h3><a href="https://ecommerce-haili.netlify.app/">DEPLOY</a></h3>
 
 <hr> </hr>
 
