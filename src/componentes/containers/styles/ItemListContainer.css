@@ -1,6 +1,5 @@
 .itemListContainer {
-  width: 100%;
-  min-height: calc(100vh - 85px);
+  max-width: 100%;
   display: flex;
   flex-flow: row wrap;
   align-content: center;

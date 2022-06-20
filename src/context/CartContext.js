@@ -9,12 +9,13 @@ export const useCartContext = () => useContext(CartContext);
 const CartContextProvider = ({ children }) => {
   const [cartList, setCartList] = useState([]);
 
+  //añadir al carrito//
   function addToCart(item) {
     const index = cartList.findIndex((product) => product.id === item.id);
     if (index !== -1) {
       toast("Agregaste " + item.name + " al carrito", {
         position: "top-right",
-        autoClose: 2000,
+        autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
