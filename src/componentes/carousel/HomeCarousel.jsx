@@ -1,6 +1,5 @@
 import React from "react";
 
-import img1 from "../image/img1.jpg";
 import img2 from "../image/img2.jpg";
 import img3 from "../image/img3.jpg";
 
@@ -37,14 +36,18 @@ const HomeCarousel = () => {
           ></button>
         </div>
         <div className="carousel-inner">
-          <div className="carousel-item active" data-bs-interval="10000">
-            <img src={img1} className="d-block mw-90" alt="..." />
+          <div className="carousel-item active" data-bs-interval="5000">
+            <img src={img2} className="d-block mw-100" alt="..." />
           </div>
-          <div className="carousel-item" data-bs-interval="2000">
-            <img src={img2} className="d-block mw-90" alt="..." />
+          <div className="carousel-item" data-bs-interval="3500">
+            <img
+              src="https://www.lenovo.com/medias/?context=bWFzdGVyfHJvb3R8NTU4Mzc1fGltYWdlL3BuZ3xoNGQvaGU0LzEzMTMyODc1MzAwODk0LnBuZ3wzYzEzMzcyNjFmNjY0NDNhMTg0YTRhZGIwMDJmOWQ0OTRmYjE4YWMxNDcyMjc1ODJjM2ZmMjMwZjBmZDlmZGIx"
+              className="d-block mw-100"
+              alt="..."
+            />
           </div>
           <div className="carousel-item">
-            <img src={img3} className="d-block mw-90" alt="..." />
+            <img src={img3} className="d-block mw-100" alt="..." />
           </div>
         </div>
         <button

@@ -62,15 +62,6 @@ const NuevoNavBar = () => {
                     Tablets
                   </Link>
                 </li>
-
-                <li className="nav-item">
-                  <Link
-                    to="/category/Contacto"
-                    style={{ textDecoration: "none" }}
-                  >
-                    Contacto
-                  </Link>
-                </li>
               </ul>
               <div className="cartIcon">
                 <Link className="btn btn-outline cartIcon" to="/cart">

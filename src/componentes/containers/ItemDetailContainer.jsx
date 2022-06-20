@@ -27,6 +27,47 @@ export default function ItemDetailContainer() {
     <>
       <div className="itemDetailContainer">
         {loader ? <Loader /> : <ItemDetail item={item} />}
+        <div className="detalle-titulo">
+          <h2>Especificaciones Tecnicas</h2>
+        </div>
+        <div className="detalle-producto">
+          <div>
+            <h3>{item.titulo1}</h3>
+            <p> {item.info1}</p>
+          </div>
+          <div>
+            <h3>{item.titulo2}</h3>
+            <p> {item.info2}</p>
+          </div>
+          <div>
+            <h3>{item.titulo3}</h3>
+            <p> {item.info3}</p>
+          </div>
+          <div>
+            <h3>{item.titulo4}</h3>
+            <p> {item.info4}</p>
+          </div>
+          <div>
+            <h3>{item.titulo5}</h3>
+            <p> {item.info5}</p>
+          </div>
+          <div>
+            <h3>{item.titulo6}</h3>
+            <p> {item.info6}</p>
+          </div>
+          <div>
+            <h3>{item.titulo7}</h3>
+            <p> {item.info7}</p>
+          </div>
+          <div>
+            <h3>{item.titulo8}</h3>
+            <p> {item.info8}</p>
+          </div>
+          <div>
+            <h3>{item.titulo9}</h3>
+            <p> {item.info9}</p>
+          </div>
+        </div>
       </div>{" "}
       <div>
         <Footer />

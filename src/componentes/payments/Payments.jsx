@@ -11,13 +11,13 @@ const Payments = () => {
         <div className="card">
           <div className="card-body">
             <h5 className="card-title">Tarjeta de crédito</h5>
-            <p className="card-text">Ver promociones bancarias</p>
+            <p className="card-text">Consultar promociones bancarias</p>
           </div>
         </div>
         <div className="card">
           <div className="card-body">
             <h5 className="card-title">Tarjeta de débito</h5>
-            <p className="card-text">Ver promociones bancarias</p>
+            <p className="card-text">Consultar promociones bancarias</p>
           </div>
         </div>
         <div className="card">

@@ -77,10 +77,10 @@ export const Form = () => {
 
   return (
     <div className="cartInfo">
-      <div className="text-center py-5 mt-5">
-        <h4 className="mt-5">
-          Completa el formulario con tus datos para confirmar la compra.
-        </h4>
+      <div className="titulo-form text-center py-5 mt-5">
+        <h2 className="mt-5">
+          Completa el formulario con tus datos para confirmar la compra:
+        </h2>
       </div>
       <div className="row">
         <div className="col-md-12">

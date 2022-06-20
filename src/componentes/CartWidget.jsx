@@ -3,7 +3,7 @@ import React from "react";
 
 import { useCartContext } from "../context/CartContext";
 
-import Cart from "../componentes/image/carrito.gif";
+import Cart from "../componentes/image/carrito2.png";
 
 import "../componentes/styles/CartWidget.css";
 

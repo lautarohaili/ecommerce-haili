@@ -2,6 +2,15 @@
   width: 100%;
 }
 
+.titulo-form h2 {
+  color: #3498db;
+  font-size: 3rem;
+}
+
+input {
+  font-size: 2rem;
+}
+
 .cartInfo form {
   width: 80%;
   display: flex;
@@ -22,7 +31,7 @@
 }
 
 .cartInfo form button {
-  background-color: #8c9ca2;
+  background: rgba(0, 0, 0, 0.8);
   font-size: 1.5rem;
   width: 60%;
   padding: 0.5em;
@@ -36,6 +45,7 @@
   transform: scale(1.03);
   transition-duration: 0.5s;
   cursor: pointer;
+  background-color: #3498db;
 }
 
 .button-home {
@@ -43,4 +53,15 @@
   font-size: 1.5rem;
   width: 50%;
   align-items: center;
+}
+
+@media only screen and (max-width: 560px) {
+  .titulo-form h2 {
+    color: #3498db;
+    font-size: 2rem;
+  }
+
+  input {
+    font-size: 1.5rem;
+  }
 }

@@ -18,10 +18,12 @@ export default function ItemDetail({ item }) {
 
   return (
     <div className="product-detail">
-      <img className="product-detail__img" src={item.img} alt="" />
+      <img className="product-detail__img" src={item.img2} alt="" />
       <div className="product-detail__info">
         <h2 className="itemDetail__title">{item.name}</h2>
         <p className="itemDetail__description">{item.description}</p>
+        <p className="itemDetail__description">{item.description2}</p>
+        <p className="itemDetail__description">{item.description3}</p>
         <ul className="info-grid">
           <li>Precio:</li>
           <li>${item.price}</li>

@@ -1,6 +1,6 @@
 .carrito {
-  width: 4em;
-  height: 4em;
+  width: 3.5em;
+  height: 3.5em;
   margin-left: 2em;
 }
 
@@ -10,9 +10,9 @@
   height: 18px;
   background-color: white;
   border-radius: 50%;
-  font-size: 12px;
+  font-size: 16px;
   position: absolute;
   text-align: center;
   line-height: 17px;
-  color: black;
+  color: #3498db;
 }
