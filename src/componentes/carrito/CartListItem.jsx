@@ -1,21 +1,13 @@
-import CartItem from "./CartItem";
-import { useCartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
+import { UseCartContext } from "../../context/CartContext";
+
+import CartItem from "./CartItem";
 import Footer from "../footer/Footer";
 
 import "../carrito/CartListItem.css";
 
 export default function CartListItem() {
-  const { cartList, deleteCart } = useCartContext();
-
-  const total = cartList.reduce(
-    (acc, item) => acc + item.price * item.count,
-    0
-  );
-  const totalItems = cartList.reduce(
-    (acc, item) => (acc = acc + item.count),
-    0
-  );
+  const { cartList, totalPrice, totalItems, clearCart } = UseCartContext();
 
   return (
     <>
@@ -29,9 +21,9 @@ export default function CartListItem() {
           {cartList.length ? (
             <div className="cart-total">
               <h3 className="total-unidades">Unidades: {totalItems}</h3>
-              <h3 className="totalCompra">Total: ${total}</h3>
+              <h3 className="totalCompra">Total: ${totalPrice}</h3>
 
-              <button className="button-clear" onClick={deleteCart}>
+              <button className="button-clear" onClick={clearCart}>
                 Vaciar Carrito
               </button>
               <Link

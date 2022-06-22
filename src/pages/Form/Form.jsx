@@ -1,136 +1,106 @@
-import React from "react";
 import { useState } from "react";
-import { collection, getFirestore, addDoc } from "firebase/firestore";
-import { useCartContext } from "../../context/CartContext";
-import swal from "sweetalert";
-import "../Form/Form.css";
 import { Link } from "react-router-dom";
+import { UseCartContext } from "../../context/CartContext";
 
-export const Form = () => {
-  const db = getFirestore();
-  const { cartList } = useCartContext();
-  const total = cartList.reduce(
-    (acc, item) => (acc = acc + parseFloat(item.price) * item.count),
-    0
-  );
+import "../Form/Form.css";
 
-  const [buyer, setBuyer] = useState({
-    name: "",
-    email: "",
-    emailConfirm: "",
-    lastName: "",
-    adress: "",
-    city: "",
-  });
+export default function CartForm() {
+  const [customerData, setCustomerData] = useState({});
+  const [nameError, setNameError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [email2Error, setEmail2Error] = useState(false);
+  const { createOrder } = UseCartContext();
 
-  function handleInputChange(e) {
-    setBuyer({
-      ...buyer,
+  const handleChange = (e) => {
+    setCustomerData({
+      ...customerData,
       [e.target.name]: e.target.value,
     });
-  }
-
-  function newOrder(e) {
-    e.preventDefault();
-    let order = {};
-    if (buyer.email === buyer.emailConfirm) {
-      order.buyer = buyer;
-      order.date = new Date();
-      order.items = cartList.map((item) => {
-        const id = item.id;
-        const name = item.name;
-        const price = item.price;
-        const quantity = item.count;
-        const stock = item.stock;
-
-        return { id, name, price, quantity, stock };
-      });
-
-      order.total = total;
-
-      const queryCollectionOrders = collection(db, "orders");
-
-      setTimeout(() => {
-        addDoc(queryCollectionOrders, order)
-          .then((resp) =>
-            swal({
-              title: "¡Gracias por elegirnos " + buyer.name + "!",
-              text:
-                "La compra se ha realizado exitosamente. El ID de tu compra es " +
-                resp.id,
-              icon: "success",
-            })
-          )
-
-          .catch((err) => console.log(err))
-          .finally(() => {
-            window.location.href = "/*";
-          }, 8000);
-      });
-    } else {
-      swal({
-        title: "Completa bien los campos",
-        icon: "error",
-      });
+  };
+  const dataManage = () => {
+    setNameError(!customerData.name);
+    setPhoneError(!customerData.phone);
+    setEmailError(!customerData.email);
+    setEmail2Error(!(customerData.email2 === customerData.email));
+    if (
+      customerData.name &&
+      customerData.phone &&
+      customerData.email &&
+      customerData.email2 === customerData.email
+    ) {
+      createOrder(customerData);
     }
-  }
+  };
 
   return (
     <div className="cartInfo">
       <div className="titulo-form text-center py-5 mt-5">
         <h2 className="mt-5">
-          Completa el formulario con tus datos para confirmar la compra:
+          Completa el formulario con tus datos para terminar la compra:
         </h2>
       </div>
       <div className="row">
         <div className="col-md-12">
-          <form onSubmit={(e) => newOrder(e)}>
+          <form action="">
             <input
-              type="email"
-              required
-              placeholder="Mail"
-              name="email"
-              onChange={handleInputChange}
-            />
-            <input
-              type="email"
-              required
-              placeholder="Confirme su Mail"
-              name="emailConfirm"
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              required
-              placeholder="Nombre Completo"
               name="name"
-              onChange={handleInputChange}
-            />
-
-            <input
+              onChange={(e) => handleChange(e)}
               type="text"
-              required
-              placeholder="Dirección"
-              name="adress"
-              onChange={handleInputChange}
+              placeholder="Nombre"
             />
+            {nameError && (
+              <span className="cartForm__error">Debe ingresar un nombre</span>
+            )}
             <input
-              type="text"
-              required
-              placeholder="Localidad"
-              name="city"
-              onChange={handleInputChange}
+              name="phone"
+              onChange={(e) => handleChange(e)}
+              type="tel"
+              placeholder="Teléfono"
             />
-
-            <Link to="/*" className="button-home">
-              <button>Volver</button>
-            </Link>
-            <button type="submit">
-              <strong>Confirmar</strong>
-            </button>
+            {phoneError && (
+              <span className="cartForm__error">Debe ingresar un teléfono</span>
+            )}
+            <input
+              name="email"
+              onChange={(e) => handleChange(e)}
+              type="email"
+              placeholder="Correo eléctronico"
+            />
+            {emailError && (
+              <span className="cartForm__error">
+                Debe ingresar un correo electrónico
+              </span>
+            )}
+            <input
+              name="email2"
+              onChange={(e) => handleChange(e)}
+              type="email"
+              placeholder="Repita correo electrónico"
+            />
+            {email2Error && (
+              <span className="cartForm__error">
+                El correo electrónico no coincide
+              </span>
+            )}
+            <textarea
+              className="cartForm__textarea"
+              name="comment"
+              onChange={(e) => handleChange(e)}
+              id=""
+              cols="30"
+              rows="10"
+              placeholder="Escriba aquí sus comentarios..."
+            ></textarea>
           </form>
+          <Link to="/*">
+            <button className="button-home">Volver</button>
+          </Link>
+          <button className="button-terminar" onClick={dataManage}>
+            <strong>Confirmar</strong>
+          </button>
         </div>
       </div>
     </div>
   );
-};
+}

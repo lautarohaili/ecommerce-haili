@@ -1,19 +1,12 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-
-import { useCartContext } from "../context/CartContext";
-
 import Cart from "../componentes/image/carrito2.png";
+import { UseCartContext } from "../context/CartContext";
 
 import "../componentes/styles/CartWidget.css";
 
-const CartWidget = () => {
-  const { cartList } = useCartContext();
-
-  const totalItems = cartList.reduce(
-    (acc, item) => (acc = acc + item.count),
-    0
-  );
+export default function CartWidget() {
+  const { totalItems } = UseCartContext();
 
   return (
     <div className="cart-widget">
@@ -22,6 +15,4 @@ const CartWidget = () => {
       <div className="qty-display">{totalItems}</div>
     </div>
   );
-};
-
-export default CartWidget;
+}

@@ -1,17 +1,14 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import { useCartContext } from "../../context/CartContext";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { UseCartContext } from "../../context/CartContext";
 
 import "../carrito/CartItem.css";
 
 export default function CartItem({ item }) {
-  const { deleteItem } = useCartContext();
+  const { clearItem } = UseCartContext();
 
-  function removeItem() {
-    deleteItem(item.id);
-  }
   return (
     <div>
       <div className="cart">
@@ -21,11 +18,9 @@ export default function CartItem({ item }) {
             src={item.img}
             style={{ width: 100 }}
           />
-          {item.name} - Precio: {item.price} - cantidad: {item.count}
-          <button
-            className="cart-item__delete"
-            onClick={() => removeItem(item.id)}
-          >
+          {item.name} - Cantidad: {item.quantity} - Subtotal: $
+          {item.price * item.quantity}
+          <button className="cart-item__delete" onClick={() => clearItem(item)}>
             <FontAwesomeIcon icon={faTimes} color={"#1d1d1d"} size={"1x"} />
           </button>
         </li>

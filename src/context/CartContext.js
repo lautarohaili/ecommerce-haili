@@ -1,62 +1,152 @@
-import React, { createContext, useContext, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { createContext, useContext, useState } from "react";
+import {
+  addDoc,
+  collection,
+  getFirestore,
+  where,
+  query,
+  documentId,
+  writeBatch,
+  getDocs,
+} from "firebase/firestore";
 
-const CartContext = createContext([]);
+import swal from "sweetalert";
 
-export const useCartContext = () => useContext(CartContext);
+const cartContext = createContext([]);
 
-const CartContextProvider = ({ children }) => {
+export function UseCartContext() {
+  return useContext(cartContext);
+}
+
+export default function CartContextProv({ children }) {
   const [cartList, setCartList] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
+  const [orderId, setOrderId] = useState("");
+  const [qtyInCart, setQtyInCart] = useState(0);
 
-  //añadir al carrito//
+  function isInCart(item) {
+    return cartList.some((el) => el.id === item.id);
+  }
   function addToCart(item) {
-    const index = cartList.findIndex((product) => product.id === item.id);
-    if (index !== -1) {
-      toast("Agregaste " + item.name + " al carrito", {
-        position: "top-right",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      let cantOld = cartList[index].count;
-      cartList[index].count = cantOld += item.count;
-      setCartList([...cartList]);
+    if (isInCart(item)) {
+      swal("Ya agregaste este producto");
+      let i = cartList.findIndex((el) => el.id === item.id);
+      const newCartList = cartList;
+      newCartList[i].quantity += item.quantity;
+      updateCart(newCartList);
     } else {
-      toast("Agregaste " + item.name + " al carrito");
-      setCartList([...cartList, item]);
+      swal(`Agregaste ${item.quantity} ${item.name} al carrito`);
+      updateCart([...cartList, item]);
     }
   }
-  //eliminar producto//
-  const deleteItem = (id) => {
-    const newCart = [...cartList];
-    let index = newCart.findIndex((product) => product.id === id);
-    newCart.splice(index, 1);
+  function clearCart(sent) {
+    if (sent !== "sent") setOrderId("");
+    updateCart([]);
+  }
+  function clearItem(item) {
+    setOrderId("");
+    const newCartList = cartList.filter((el) => el.id !== item.id);
+    updateCart(newCartList);
+  }
+  function updateCart(arr) {
+    setCartList(arr);
+    setTotalPrice(
+      arr
+        .map((curr) => curr.quantity * curr.price)
+        .reduce((acc, curr) => acc + curr, 0)
+    );
+    setTotalItems(
+      arr.map((curr) => curr.quantity).reduce((acc, curr) => acc + curr, 0)
+    );
+  }
+  function checkQtyInCart(item) {
+    if (isInCart(item)) {
+      let i = cartList.findIndex((el) => el.id === item.id);
+      setQtyInCart(cartList[i].quantity);
+    } else {
+      setQtyInCart(0);
+    }
+  }
+  function createOrder(customerData) {
+    let order = {};
 
-    setCartList([...newCart]);
-  };
+    order.customerData = customerData;
+    order.totalPrice = totalPrice;
+    order.items = cartList.map((item) => {
+      const id = item.id;
+      const name = item.name;
+      const quantity = item.quantity;
+      const newStock = item.stock - item.quantity;
+      const price = item.price * item.quantity;
+      return { id, name, quantity, newStock, price };
+    });
 
-  //vaciar carrito//
-  const deleteCart = () => {
-    setCartList([]);
-  };
+    async function updateStocks() {
+      const queryCollectionStocks = collection(db, "items");
+      const queryUpdateStocks = query(
+        queryCollectionStocks,
+        where(
+          documentId(),
+          "in",
+          cartList.map((item) => item.id)
+        )
+      );
+      const batch = writeBatch(db);
+
+      await getDocs(queryUpdateStocks)
+        .then((resp) =>
+          resp.docs.forEach((res) =>
+            batch.update(res.ref, {
+              stock: order.items.find((item) => item.id === res.id).newStock,
+            })
+          )
+        )
+        .catch((err) => console.log(err));
+
+      batch.commit();
+    }
+
+    const db = getFirestore();
+    const queryCollectionOrders = collection(db, "orders");
+    setTimeout(() => {
+      addDoc(queryCollectionOrders, order)
+        .then((resp) =>
+          setOrderId(
+            swal({
+              title: "¡ Gracias por elegirnos !",
+              text:
+                "La compra se ha realizado exitosamente. El ID de tu compra es" +
+                resp.id,
+              icon: "success",
+            })
+          )
+        )
+        .then(() => updateStocks())
+        .catch((err) => console.log(err))
+        .finally(() => {
+          window.location.href = "/*";
+        }, 8000);
+    });
+  }
 
   return (
-    <CartContext.Provider
+    <cartContext.Provider
       value={{
         cartList,
-        deleteItem,
+        totalPrice,
+        totalItems,
+        orderId,
+        qtyInCart,
         addToCart,
-        deleteCart,
+        clearCart,
+        clearItem,
+        createOrder,
+        isInCart,
+        checkQtyInCart,
       }}
     >
-      <ToastContainer />
       {children}
-    </CartContext.Provider>
+    </cartContext.Provider>
   );
-};
-
-export default CartContextProvider;
+}

@@ -4,14 +4,13 @@ import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 import ItemDetail from "../ItemDetail";
 import Loader from "../loaders/Loader";
+import Footer from "../footer/Footer";
 
 import "./styles/ItemDetailContainer.css";
-import Footer from "../footer/Footer";
 
 export default function ItemDetailContainer() {
   const [item, setItem] = useState({});
   const [loader, setLoader] = useState(true);
-
   const { id } = useParams();
 
   useEffect(() => {

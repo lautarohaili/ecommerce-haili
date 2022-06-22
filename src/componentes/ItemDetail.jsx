@@ -1,20 +1,20 @@
-import { useState } from "react";
-import { useCartContext } from "../context/CartContext";
+import { useEffect, useState } from "react";
+import { UseCartContext } from "../context/CartContext";
 import BuyButtons from "./BuyButtons";
 import ItemCount from "./ItemCount";
 import "./styles/ItemDetail.css";
 
 export default function ItemDetail({ item }) {
   const [inputType, setInputType] = useState("itemCount");
-  const { addToCart } = useCartContext();
+  const { qtyInCart, addToCart, checkQtyInCart } = UseCartContext();
 
-  function onAdd(count) {
-    addToCart({ ...item, count: count });
-    handleInputType();
-  }
-  function handleInputType() {
+  const onAdd = (quantity) => {
+    addToCart({ ...item, quantity });
     setInputType("buyButtons");
-  }
+  };
+  useEffect(() => {
+    checkQtyInCart(item);
+  });
 
   return (
     <div className="product-detail">
@@ -32,10 +32,9 @@ export default function ItemDetail({ item }) {
         </ul>
         {inputType === "itemCount" ? (
           <ItemCount
-            initial={1}
-            stock={item.stock}
+            item={item}
+            currentStock={item.stock - qtyInCart}
             onAdd={onAdd}
-            handleInputType={handleInputType}
           />
         ) : (
           <BuyButtons />
